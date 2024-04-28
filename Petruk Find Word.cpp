@@ -4,12 +4,23 @@
 using namespace std;
 
 bool findWord(const string* matriks, int Baris, int Kolom, const string& kata) {
-		 int panjangKata = kata.length();
+    string kataUpper = kata;
+    for (char& c : kataUpper) {
+        if (c >= 'a' && c <= 'z') {
+            c = c - 'a' + 'A'; 
+        }
+    }
+    int panjangKata = kataUpper.length();
 
     for (int horizontal = 0; horizontal < Baris; ++horizontal) {
         for (int vertikal = 0; vertikal <= Kolom - panjangKata; ++vertikal) {
             string potongan = matriks[horizontal].substr(vertikal, panjangKata);
-            if (potongan == kata) {
+            for (char& c : potongan) {
+                if (c >= 'a' && c <= 'z') {
+                    c = c - 'a' + 'A'; 
+                }
+            }
+            if (potongan == kataUpper) {
                 return true;
             }
         }
@@ -21,7 +32,12 @@ bool findWord(const string* matriks, int Baris, int Kolom, const string& kata) {
             for (int i = 0; i < panjangKata; ++i) {
                 VertikalKata += matriks[horizontal + i][vertikal];
             }
-            if (VertikalKata == kata) {
+            for (char& c : VertikalKata) {
+                if (c >= 'a' && c <= 'z') {
+                    c = c - 'a' + 'A'; 
+                }
+            }
+            if (VertikalKata == kataUpper) {
                 return true;
             }
         }
@@ -30,7 +46,7 @@ bool findWord(const string* matriks, int Baris, int Kolom, const string& kata) {
         for (int vertikal = 0; vertikal <= Kolom - panjangKata; ++vertikal) {
             bool ditemukan = true;
             for (int i = 0; i < panjangKata; ++i) {
-                if (matriks[horizontal + i][vertikal + i] != kata[i]) {
+                if (matriks[horizontal + i][vertikal + i] != kataUpper[i]) {
                     ditemukan = false;
                     break;
                 }
@@ -45,7 +61,7 @@ bool findWord(const string* matriks, int Baris, int Kolom, const string& kata) {
         for (int vertikal = Kolom - 1; vertikal >= panjangKata - 1; --vertikal) {
             bool ditemukan = true;
             for (int i = 0; i < panjangKata; ++i) {
-                if (matriks[horizontal + i][vertikal - i] != kata[i]) {
+                if (matriks[horizontal + i][vertikal - i] != kataUpper[i]) {
                     ditemukan = false;
                     break;
                 }
@@ -60,7 +76,7 @@ bool findWord(const string* matriks, int Baris, int Kolom, const string& kata) {
         for (int vertikal = 0; vertikal <= Kolom - panjangKata; ++vertikal) {
             bool ditemukan = true;
             for (int i = 0; i < panjangKata; ++i) {
-                if (matriks[horizontal - i][vertikal + i] != kata[i]) {
+                if (matriks[horizontal - i][vertikal + i] != kataUpper[i]) {
                     ditemukan = false;
                     break;
                 }
@@ -75,7 +91,7 @@ bool findWord(const string* matriks, int Baris, int Kolom, const string& kata) {
         for (int vertikal = Kolom - 1; vertikal >= panjangKata - 1; --vertikal) {
             bool ditemukan = true;
             for (int i = 0; i < panjangKata; ++i) {
-                if (matriks[horizontal - i][vertikal - i] != kata[i]) {
+                if (matriks[horizontal - i][vertikal - i] != kataUpper[i]) {
                     ditemukan = false;
                     break;
                 }
