@@ -10,7 +10,9 @@ bool findWord(const string* matriks, int Baris, int Kolom, const string& kata) {
             c = c - 'a' + 'A'; 
         }
     }
+
     int panjangKata = kataUpper.length();
+
 
     for (int horizontal = 0; horizontal < Baris; ++horizontal) {
         for (int vertikal = 0; vertikal <= Kolom - panjangKata; ++vertikal) {
@@ -26,6 +28,7 @@ bool findWord(const string* matriks, int Baris, int Kolom, const string& kata) {
         }
     }
 
+  
     for (int vertikal = 0; vertikal < Kolom; ++vertikal) {
         for (int horizontal = 0; horizontal <= Baris - panjangKata; ++horizontal) {
             string VertikalKata = "";
@@ -42,6 +45,8 @@ bool findWord(const string* matriks, int Baris, int Kolom, const string& kata) {
             }
         }
     }
+
+
     for (int horizontal = 0; horizontal <= Baris - panjangKata; ++horizontal) {
         for (int vertikal = 0; vertikal <= Kolom - panjangKata; ++vertikal) {
             bool ditemukan = true;
@@ -56,6 +61,7 @@ bool findWord(const string* matriks, int Baris, int Kolom, const string& kata) {
             }
         }
     }
+
 
     for (int horizontal = 0; horizontal <= Baris - panjangKata; ++horizontal) {
         for (int vertikal = Kolom - 1; vertikal >= panjangKata - 1; --vertikal) {
@@ -72,6 +78,7 @@ bool findWord(const string* matriks, int Baris, int Kolom, const string& kata) {
         }
     }
 
+
     for (int horizontal = Baris - 1; horizontal >= panjangKata - 1; --horizontal) {
         for (int vertikal = 0; vertikal <= Kolom - panjangKata; ++vertikal) {
             bool ditemukan = true;
@@ -86,6 +93,7 @@ bool findWord(const string* matriks, int Baris, int Kolom, const string& kata) {
             }
         }
     }
+
 
     for (int horizontal = Baris - 1; horizontal >= panjangKata - 1; --horizontal) {
         for (int vertikal = Kolom - 1; vertikal >= panjangKata - 1; --vertikal) {
@@ -103,10 +111,8 @@ bool findWord(const string* matriks, int Baris, int Kolom, const string& kata) {
     }
 
     return false;
-
 }
-    
-    
+
 int main() {
 
     int jumlahKata;
@@ -116,6 +122,7 @@ int main() {
     for (int i = 0; i < jumlahKata; ++i) {
         cin >> kata[i];
     }
+
     const int Baris = 23; 
     const int Kolom = 23; 
     string matriks[Baris] = {
@@ -143,6 +150,7 @@ int main() {
         "BFREEZINGRAINSLILGTMELT",
         "HQPYLWHFMNFFUFPSWXNUMMV"
     };
+
     for (int i = 0; i < jumlahKata; ++i) {
         if (findWord(matriks, Baris, Kolom, kata[i])) {
             cout << "Ada" << endl;
@@ -152,9 +160,6 @@ int main() {
     }
 
     delete[] kata;
-
-    return 0;
-
+    
+return 0;
 }
-
-
