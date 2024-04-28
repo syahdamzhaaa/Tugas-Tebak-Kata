@@ -4,8 +4,30 @@
 using namespace std;
 
 bool findWord(const string* matriks, int Baris, int Kolom, const string& kata) {
+		 int panjangKata = kata.length();
 
+    for (int horizontal = 0; horizontal < Baris; ++horizontal) {
+        for (int vertikal = 0; vertikal <= Kolom - panjangKata; ++vertikal) {
+            string potongan = matriks[horizontal].substr(vertikal, panjangKata);
+            if (potongan == kata) {
+                return true;
+            }
+        }
     }
+
+    for (int vertikal = 0; vertikal < Kolom; ++vertikal) {
+        for (int horizontal = 0; horizontal <= Baris - panjangKata; ++horizontal) {
+            string VertikalKata = "";
+            for (int i = 0; i < panjangKata; ++i) {
+                VertikalKata += matriks[horizontal + i][vertikal];
+            }
+            if (VertikalKata == kata) {
+                return true;
+            }
+        }
+    }
+}
+    
     
 int main() {
 
@@ -43,5 +65,18 @@ int main() {
         "BFREEZINGRAINSLILGTMELT",
         "HQPYLWHFMNFFUFPSWXNUMMV"
     };
+    for (int i = 0; i < jumlahKata; ++i) {
+        if (findWord(matriks, Baris, Kolom, kata[i])) {
+            cout << "Ada" << endl;
+        } else {
+            cout << "Tidak Ada" << endl;
+        }
+    }
+
+    delete[] kata;
+
+    return 0;
+
 }
+
 
