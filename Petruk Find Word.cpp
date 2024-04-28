@@ -26,6 +26,68 @@ bool findWord(const string* matriks, int Baris, int Kolom, const string& kata) {
             }
         }
     }
+    for (int horizontal = 0; horizontal <= Baris - panjangKata; ++horizontal) {
+        for (int vertikal = 0; vertikal <= Kolom - panjangKata; ++vertikal) {
+            bool ditemukan = true;
+            for (int i = 0; i < panjangKata; ++i) {
+                if (matriks[horizontal + i][vertikal + i] != kata[i]) {
+                    ditemukan = false;
+                    break;
+                }
+            }
+            if (ditemukan) {
+                return true;
+            }
+        }
+    }
+
+    for (int horizontal = 0; horizontal <= Baris - panjangKata; ++horizontal) {
+        for (int vertikal = Kolom - 1; vertikal >= panjangKata - 1; --vertikal) {
+            bool ditemukan = true;
+            for (int i = 0; i < panjangKata; ++i) {
+                if (matriks[horizontal + i][vertikal - i] != kata[i]) {
+                    ditemukan = false;
+                    break;
+                }
+            }
+            if (ditemukan) {
+                return true;
+            }
+        }
+    }
+
+    for (int horizontal = Baris - 1; horizontal >= panjangKata - 1; --horizontal) {
+        for (int vertikal = 0; vertikal <= Kolom - panjangKata; ++vertikal) {
+            bool ditemukan = true;
+            for (int i = 0; i < panjangKata; ++i) {
+                if (matriks[horizontal - i][vertikal + i] != kata[i]) {
+                    ditemukan = false;
+                    break;
+                }
+            }
+            if (ditemukan) {
+                return true;
+            }
+        }
+    }
+
+    for (int horizontal = Baris - 1; horizontal >= panjangKata - 1; --horizontal) {
+        for (int vertikal = Kolom - 1; vertikal >= panjangKata - 1; --vertikal) {
+            bool ditemukan = true;
+            for (int i = 0; i < panjangKata; ++i) {
+                if (matriks[horizontal - i][vertikal - i] != kata[i]) {
+                    ditemukan = false;
+                    break;
+                }
+            }
+            if (ditemukan) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+
 }
     
     
